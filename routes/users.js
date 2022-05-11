@@ -24,10 +24,9 @@ router.get("/tasks", function (req, res, next) {
     .catch((err) => res.status(500).send(err));
 });
 
-module.exports = router;
-/**-----------------------ERRORS BELOW-------------- */
 // GET one TaskName
-router.get("/users/tasks/:TaskID", function (req, res, next) {
+//localhost:5002/users/users/tasks/1
+http: router.get("/users/tasks/:TaskID", function (req, res, next) {
   db(`SELECT * FROM Tasks WHERE TaskID=${req.params.TaskID};`)
     .then((results) => {
       res.send(results.data);
@@ -35,7 +34,9 @@ router.get("/users/tasks/:TaskID", function (req, res, next) {
     .catch((err) => res.status(500).send(err));
 });
 
-// GET one TaskName
+// GET one UserName
+
+//http://localhost:5002/users/users/1
 router.get("/users/:UserID", function (req, res, next) {
   db(`SELECT * FROM Users WHERE UserID=${req.params.UserID};`)
     .then((results) => {
@@ -43,3 +44,5 @@ router.get("/users/:UserID", function (req, res, next) {
     })
     .catch((err) => res.status(500).send(err));
 });
+
+module.exports = router;
