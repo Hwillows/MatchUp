@@ -25,20 +25,21 @@ router.get("/tasks", function (req, res, next) {
 });
 
 module.exports = router;
+/**-----------------------ERRORS BELOW-------------- */
+// GET one TaskName
+router.get("/users/tasks/:TaskID", function (req, res, next) {
+  db(`SELECT * FROM Tasks WHERE TaskID=${req.params.TaskID};`)
+    .then((results) => {
+      res.send(results.data);
+    })
+    .catch((err) => res.status(500).send(err));
+});
 
-// // GET one student
-// router.get("/:id", function (req, res, next) {
-//   //your code here
-// });
-
-// // INSERT a new student into the DB
-// router.post("/", function (req, res, next) {
-//   //your code here
-// });
-
-// // DELETE a student from the DB
-// router.delete("/:id", function (req, res, next) {
-//   //your code here
-// });
-
-// module.exports = router;
+// GET one TaskName
+router.get("/users/:UserID", function (req, res, next) {
+  db(`SELECT * FROM Users WHERE UserID=${req.params.UserID};`)
+    .then((results) => {
+      res.send(results.data);
+    })
+    .catch((err) => res.status(500).send(err));
+});
