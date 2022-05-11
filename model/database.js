@@ -12,16 +12,16 @@ const con = mysql.createConnection({
   port: "52000",
   password: DB_PASS,
   database: DB_NAME || "todos",
-  multipleStatements: true
+  multipleStatements: true,
 });
 
-con.connect(function(err) {
+con.connect(function (err) {
   if (err) throw err;
   console.log("Connected!");
 
   let sql =
-    "DROP TABLE if exists items; CREATE TABLE items(id INT NOT NULL AUTO_INCREMENT, text VARCHAR(40) not null, complete BOOLEAN, PRIMARY KEY (id));";
-  con.query(sql, function(err, result) {
+    "DROP TABLE if exists Tasks; DROP TABLE if exists Users; CREATE TABLE Tasks(TaskID INT NOT NULL AUTO_INCREMENT, TaskName VARCHAR(40) not null, IsMatched BOOLEAN, PRIMARY KEY (TaskID));CREATE TABLE Users(UserID INT NOT NULL AUTO_INCREMENT, UserName VARCHAR(40) not null, PRIMARY KEY (UserID));";
+  con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Table creation `items` was successful!");
 
@@ -29,4 +29,25 @@ con.connect(function(err) {
   });
 
   con.end();
+
+  // let sql =
+  //   "DROP TABLE if exists Tasks; DROP TABLE if exists Users; CREATE TABLE Tasks(TaskID INT NOT NULL AUTO_INCREMENT, TaskName VARCHAR(40) not null, IsMatched BOOLEAN, PRIMARY KEY (TaskID));CREATE TABLE Users(UserID INT NOT NULL AUTO_INCREMENT, UserName VARCHAR(40) not null, PRIMARY KEY (UserID), FOREIGN KEY (TaskID) REFERENCES Tasks(TaskID));";
+  // con.query(sql, function (err, result) {
+  //   if (err) throw err;
+  //   console.log("Table creation `items` was successful!");
+
+  //   console.log("Closing...");
+  // });
+
+  // con.end();
+
+  //  "DROP TABLE if exists items; CREATE TABLE items(id INT NOT NULL AUTO_INCREMENT, text VARCHAR(40) not null, complete BOOLEAN, PRIMARY KEY (id));";
+  //  con.query(sql, function (err, result) {
+  //    if (err) throw err;
+  //    console.log("Table creation `items` was successful!");
+
+  //    console.log("Closing...");
+  //  });
+
+  // con.end();
 });
