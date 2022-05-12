@@ -36,10 +36,16 @@ export default function App() {
       });
   };
 
+  const handleClickDropDown = (e) => {
+    console.log("SUCCESS");
+    console.log({ tasks });
+  };
+
   return (
     <div className="App">
       <div className="app-container">
         <h1>Find Your Match</h1>
+
         <h4>some things are a better in pairs</h4>
         <hr></hr>
 
@@ -50,10 +56,31 @@ export default function App() {
           MatchUP is a platform where you can find and match with people who
           have similar interests and likeminded goals.
         </h5>
-        <h5>Start by clicking an activity</h5>
+        <h5>Choose an activity</h5>
         {/* PROPS */}
         <UserInfo users={users} />
         <TaskInfo tasks={tasks} />
+        {/* DROP DOWN BS TEST */}
+        <div className="dropdown">
+          <button
+            // onClick={getTasks}
+            onClick={handleClickDropDown}
+            className="btn btn-warning dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Click to get started
+          </button>
+          <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li className="dropdown-item">INSERT TASKS FROM DB</li>
+            <li className="dropdown-item">INSERT TASKS FROM DB</li>
+            <li className="dropdown-item">INSERT TASKS FROM DB</li>
+            <li className="dropdown-item">INSERT TASKS FROM DB</li>
+          </ul>
+        </div>
       </div>
     </div>
   );

@@ -37,14 +37,10 @@ h5 {
   font-family: "Dosis", sans-serif;
 }
 
-p {
+img {
   margin: 25px;
-  display: flex;
-  justify-content: center;
-  font-weight: bolder;
-  color: #fff;
-  font-family: "Dosis", sans-serif;
 }
+
 /* COLORS 
 
 #4abdac
