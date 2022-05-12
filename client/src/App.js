@@ -58,6 +58,7 @@ export default function App() {
           have similar interests and likeminded goals.
         </h5>
         <h5>Choose an activity</h5>
+
         {/* PROPS */}
         <UserInfo users={users} />
         <TaskInfo tasks={tasks} />
