@@ -2,6 +2,7 @@ import "./App.css";
 import React, { useEffect, useState } from "react";
 import UserInfo from "./components/UserInfo";
 import TaskInfo from "./components/TaskInfo";
+import { Dropdown } from "bootstrap";
 
 export default function App() {
   // const [matches, setMatches] = useState([]);
@@ -37,12 +38,23 @@ export default function App() {
 
   return (
     <div className="App">
-      TEST
-      <button type="button" className="btn btn-primary">
-        TEST BUTTON
-      </button>
-      <UserInfo users={users} />
-      <TaskInfo tasks={tasks} />
+      <div className="app-container">
+        <h1>Find Your Match</h1>
+        <h4>some things are a better in pairs</h4>
+        <hr></hr>
+
+        <h5>
+          Looking for a gym partner, shopping buddy, or even a chess opponent?
+          <br />
+          <br />
+          MatchUP is a platform where you can find and match with people who
+          have similar interests and likeminded goals.
+        </h5>
+        <h5>Start by clicking an activity</h5>
+        {/* PROPS */}
+        <UserInfo users={users} />
+        <TaskInfo tasks={tasks} />
+      </div>
     </div>
   );
 }

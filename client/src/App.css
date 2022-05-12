@@ -1,0 +1,55 @@
+.App {
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0px auto;
+}
+
+body {
+  background-color: #4abdac;
+}
+h1 {
+  margin: 25px;
+  display: flex;
+  justify-content: center;
+  font-weight: bolder;
+  color: #fff;
+  font-family: "Dosis", sans-serif;
+}
+
+h4 {
+  margin: 25px;
+  display: flex;
+  justify-content: center;
+  font-weight: bolder;
+  color: #fff;
+  font-family: "Dosis", sans-serif;
+}
+
+h5 {
+  margin: 25px;
+  display: flex;
+  justify-content: center;
+  font-weight: bolder;
+  color: #fff;
+  font-family: "Dosis", sans-serif;
+}
+
+p {
+  margin: 25px;
+  display: flex;
+  justify-content: center;
+  font-weight: bolder;
+  color: #fff;
+  font-family: "Dosis", sans-serif;
+}
+/* COLORS 
+
+#4abdac
+#fc4a1a
+#f3b733
+#dfdce3
+#fffff3;
+*/
