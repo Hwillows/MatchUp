@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import UserInfo from "./components/UserInfo";
 import TaskInfo from "./components/TaskInfo";
 import { Dropdown } from "bootstrap";
+import DropDown from "./components/DropDown";
 
 export default function App() {
   // const [matches, setMatches] = useState([]);
@@ -60,7 +61,9 @@ export default function App() {
         {/* PROPS */}
         <UserInfo users={users} />
         <TaskInfo tasks={tasks} />
-        {/* DROP DOWN BS TEST */}
+        <DropDown tasks={tasks} />
+
+        {/* DROP DOWN BUTTON BOOTSTRAP */}
         <div className="dropdown">
           <button
             // onClick={getTasks}
@@ -74,12 +77,17 @@ export default function App() {
           >
             Click to get started
           </button>
-          <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <li className="dropdown-item">INSERT TASKS FROM DB</li>
-            <li className="dropdown-item">INSERT TASKS FROM DB</li>
-            <li className="dropdown-item">INSERT TASKS FROM DB</li>
-            <li className="dropdown-item">INSERT TASKS FROM DB</li>
-          </ul>
+          <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a className="dropdown-item" href="#">
+              Action
+            </a>
+            <a className="dropdown-item" href="#">
+              Another action
+            </a>
+            <a className="dropdown-item" href="#">
+              Something else here
+            </a>
+          </div>
         </div>
       </div>
     </div>
