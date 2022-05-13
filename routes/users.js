@@ -6,7 +6,7 @@ const db = require("../model/helper");
 //   res.send("Welcome to MatchUp!");
 // });
 
-//  GET user list
+//  GET users list
 router.get("/", function (req, res, next) {
   db("SELECT * FROM users;")
     .then((results) => {
@@ -15,7 +15,7 @@ router.get("/", function (req, res, next) {
     .catch((err) => res.status(500).send(err));
 });
 
-//  GET task list
+//  GET tasks list
 router.get("/tasks", function (req, res, next) {
   db("SELECT * FROM tasks;")
     .then((results) => {
@@ -24,7 +24,7 @@ router.get("/tasks", function (req, res, next) {
     .catch((err) => res.status(500).send(err));
 });
 
-// GET one TaskName
+// GET one task_name
 //localhost:5002/users/users/tasks/1
 http: router.get("/users/tasks/:id", function (req, res, next) {
   db(`SELECT * FROM tasks WHERE id=${req.params.TaskID};`)
@@ -34,7 +34,7 @@ http: router.get("/users/tasks/:id", function (req, res, next) {
     .catch((err) => res.status(500).send(err));
 });
 
-// GET one UserName
+// GET one user_name
 
 //http://localhost:5002/users/users/1
 router.get("/users/:id", function (req, res, next) {

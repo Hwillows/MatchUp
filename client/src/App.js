@@ -2,8 +2,6 @@ import "./App.css";
 import React, { useEffect, useState } from "react";
 import UserInfo from "./components/UserInfo";
 import TaskInfo from "./components/TaskInfo";
-import { Dropdown } from "bootstrap";
-import DropDown from "./components/DropDown";
 
 export default function App() {
   // const [matches, setMatches] = useState([]);
@@ -37,19 +35,17 @@ export default function App() {
       });
   };
 
-  const handleClickDropDown = (e) => {
-    console.log("SUCCESS");
-    console.log({ tasks });
-  };
+  // const handleClickDropDown = (e) => {
+  //   console.log("SUCCESS");
+  //   console.log({ tasks });
+  // };
 
   return (
     <div className="App">
       <div className="app-container">
         <h1>Find Your Match</h1>
-
         <h4>some things are a better in pairs</h4>
         <hr></hr>
-
         <h5>
           Looking for a gym partner, shopping buddy, or even a chess opponent?
           <br />
@@ -58,17 +54,15 @@ export default function App() {
           have similar interests and likeminded goals.
         </h5>
         <h5>Choose an activity</h5>
-
         {/* PROPS */}
         <UserInfo users={users} />
         <TaskInfo tasks={tasks} />
-        <DropDown tasks={tasks} />
 
         {/* DROP DOWN BUTTON BOOTSTRAP */}
         <div className="dropdown">
           <button
             // onClick={getTasks}
-            onClick={handleClickDropDown}
+            // onClick={handleClickDropDown}
             className="btn btn-warning dropdown-toggle"
             type="button"
             id="dropdownMenuButton"
