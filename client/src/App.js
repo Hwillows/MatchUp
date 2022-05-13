@@ -2,6 +2,7 @@ import "./App.css";
 import React, { useEffect, useState } from "react";
 import UserInfo from "./components/UserInfo";
 import TaskInfo from "./components/TaskInfo";
+import InputForm from "./components/InputForm";
 
 export default function App() {
   // const [matches, setMatches] = useState([]);
@@ -57,6 +58,7 @@ export default function App() {
         {/* PROPS */}
         <UserInfo users={users} />
         <TaskInfo tasks={tasks} />
+        <InputForm />
 
         {/* DROP DOWN BUTTON BOOTSTRAP */}
         <div className="dropdown">
