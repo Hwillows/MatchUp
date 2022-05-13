@@ -4,7 +4,17 @@
 import React from "react";
 
 const TaskInfo = (props) => {
-  return <div>There are '{props.tasks.length}' users in the database.</div>;
+  return (
+    <div>
+      <ul>
+        {/* trying to render user name list */}
+        {props.tasks.map((task) => {
+          /* use .map b/c tasks is an array of objects */
+          return <li key={task.id}>{task.task_name}</li>;
+        })}
+      </ul>
+      There are '{props.tasks.length}' users in the database;
+    </div>
+  );
 };
-
 export default TaskInfo;

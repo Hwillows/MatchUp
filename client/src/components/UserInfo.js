@@ -10,7 +10,7 @@ const UserInfo = (props) => {
         {/* trying to render user name list */}
         {props.users.map((user) => {
           /* use .map b/c tasks is an array of objects */
-          return <li key={user.id}>{user.UserName}</li>;
+          return <li key={user.id}>{user.user_name}</li>;
         })}
       </ul>
       There are '{props.users.length}' users in the database;

@@ -8,7 +8,7 @@ const db = require("../model/helper");
 
 //  GET user list
 router.get("/", function (req, res, next) {
-  db("SELECT * FROM Users;")
+  db("SELECT * FROM users;")
     .then((results) => {
       res.send(results.data);
     })
@@ -17,7 +17,7 @@ router.get("/", function (req, res, next) {
 
 //  GET task list
 router.get("/tasks", function (req, res, next) {
-  db("SELECT * FROM Tasks;")
+  db("SELECT * FROM tasks;")
     .then((results) => {
       res.send(results.data);
     })
@@ -26,8 +26,8 @@ router.get("/tasks", function (req, res, next) {
 
 // GET one TaskName
 //localhost:5002/users/users/tasks/1
-http: router.get("/users/tasks/:TaskID", function (req, res, next) {
-  db(`SELECT * FROM Tasks WHERE TaskID=${req.params.TaskID};`)
+http: router.get("/users/tasks/:id", function (req, res, next) {
+  db(`SELECT * FROM tasks WHERE id=${req.params.TaskID};`)
     .then((results) => {
       res.send(results.data);
     })
@@ -37,8 +37,8 @@ http: router.get("/users/tasks/:TaskID", function (req, res, next) {
 // GET one UserName
 
 //http://localhost:5002/users/users/1
-router.get("/users/:UserID", function (req, res, next) {
-  db(`SELECT * FROM Users WHERE UserID=${req.params.UserID};`)
+router.get("/users/:id", function (req, res, next) {
+  db(`SELECT * FROM users WHERE id=${req.params.UserID};`)
     .then((results) => {
       res.send(results.data);
     })
