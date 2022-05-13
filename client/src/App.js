@@ -1,14 +1,12 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import UserInfo from "./components/UserInfo";
+import UserInfo from "./components/InputForm";
 import TaskInfo from "./components/TaskInfo";
-import InputForm from "./components/InputForm";
 
 export default function App() {
   // const [matches, setMatches] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [users, setUsers] = useState([]);
-
   useEffect(() => {
     getTasks();
     getUsers();
@@ -58,34 +56,6 @@ export default function App() {
         {/* PROPS */}
         <UserInfo users={users} />
         <TaskInfo tasks={tasks} />
-        <InputForm />
-
-        {/* DROP DOWN BUTTON BOOTSTRAP */}
-        <div className="dropdown">
-          <button
-            // onClick={getTasks}
-            // onClick={handleClickDropDown}
-            className="btn btn-warning dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Click to get started
-          </button>
-          <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a className="dropdown-item" href="#">
-              Action
-            </a>
-            <a className="dropdown-item" href="#">
-              Another action
-            </a>
-            <a className="dropdown-item" href="#">
-              Something else here
-            </a>
-          </div>
-        </div>
       </div>
     </div>
   );
