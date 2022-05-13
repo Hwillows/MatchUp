@@ -1,12 +1,12 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import UserInfo from "./components/InputForm";
-import TaskInfo from "./components/TaskInfo";
+import InputForm from "./components/InputForm";
 
 export default function App() {
   // const [matches, setMatches] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [users, setUsers] = useState([]);
+
   useEffect(() => {
     getTasks();
     getUsers();
@@ -54,8 +54,8 @@ export default function App() {
         </h5>
         <h5>Choose an activity</h5>
         {/* PROPS */}
-        <UserInfo users={users} />
-        <TaskInfo tasks={tasks} />
+
+        <InputForm users={users} tasks={tasks} />
       </div>
     </div>
   );
