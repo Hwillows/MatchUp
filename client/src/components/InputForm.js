@@ -7,18 +7,14 @@ const InputForm = (props) => {
   // const [selectUser1, setSelectUser1] = useState([]);
   // const [selectUser2, setSelectUser2] = useState([]);
   const [users, setUsers] = useState({});
+  const [tasks, setTasks] = useState({});
   const [selectTask, setSelectTask] = useState([]);
   const [message, setMessage] = useState("");
   const [isActive, setIsActive] = useState(true);
 
-  // //Check variables and info being passed
-  // console.log("selectUser1", selectUser1);
-  // console.log("selectUser2", selectUser2);
-  // console.log("selectTask", selectTask);
-
   const changeIsActive = () => {
     if (users.selectUser1 === users.selectUser2) {
-      setMessage("Choose two different people");
+      setMessage("Please choose two different names.");
       setIsActive(false);
     } else {
       setIsActive(true);
@@ -27,7 +23,6 @@ const InputForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     console.log("Submit clicked!");
   };
 
@@ -37,12 +32,18 @@ const InputForm = (props) => {
       [event.target.name]: event.target.value,
     });
 
-    changeIsActive();
+    setTasks({
+      ...tasks,
+      [event.target.name]: event.target.value,
+    });
+    changeIsActive(); //checking if names are different
+
+    props.addNewMatch(users);
   };
 
   return (
     <div>
-      <div className="form-container">
+      <form className="form-container">
         {/*----------SELECT USER 1----------*/}
         <label for="selectUser1">Choose Name 1:</label>
         <select
@@ -93,14 +94,16 @@ const InputForm = (props) => {
           {/* hide button with if statement -check portfolio */}
           <button
             type="submit"
-            className="btn btn-warning btn-lg btn-block"
+            // trying to conditionally render submit button ---not working
+            // className="{isActive ? btn btn-warning btn-lg btn-block : noShow}"
+            className="isActive ? btn btn-warning btn-lg btn-block"
             onClick={(e) => handleSubmit(e)}
             disabled={!isActive}
           >
             Match Up!
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

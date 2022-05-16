@@ -1,15 +1,23 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import InputForm from "./components/InputForm";
+import MatchesTable from "./components/MatchesTable";
 
 export default function App() {
   const [tasks, setTasks] = useState([]);
   const [users, setUsers] = useState([]);
+  const [matches, setMatches] = useState([]);
 
   useEffect(() => {
     getTasks();
     getUsers();
   }, []);
+
+  const handleAddMatches = (newMatch) => {
+    console.log("App component receiving new match from Admin", newMatch);
+
+    setMatches((state) => [...state, matches]);
+  };
 
   const getTasks = () => {
     fetch("/users/tasks")
@@ -57,7 +65,6 @@ export default function App() {
       </div>
       <div className="app-container">
         <h1>Find Your Match</h1>
-
         <h4>some things are a better in pairs</h4>
         <hr></hr>
         <h5>
@@ -69,8 +76,13 @@ export default function App() {
         </h5>
         <h5>Choose an activity</h5>
         {/* PROPS */}
-
-        <InputForm users={users} tasks={tasks} />
+        <InputForm
+          users={users}
+          tasks={tasks}
+          addNewMatch={(addNewMatch) => handleAddMatches(addNewMatch)}
+        />
+        {/* MatchesTable addNewMatch={addNewMatch} /> */}
+        <MatchesTable />
       </div>
     </div>
   );
