@@ -34,11 +34,6 @@ export default function App() {
       });
   };
 
-  // const handleClickDropDown = (e) => {
-  //   console.log("SUCCESS");
-  //   console.log({ tasks });
-  // };
-
   return (
     <div className="App">
       <div className="app-container">

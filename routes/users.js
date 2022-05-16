@@ -27,18 +27,17 @@ router.get("/tasks", function (req, res, next) {
 // GET one task_name
 //localhost:5002/users/users/tasks/1
 http: router.get("/users/tasks/:id", function (req, res, next) {
-  db(`SELECT * FROM tasks WHERE id=${req.params.TaskID};`)
+  db(`SELECT * FROM tasks WHERE id=${req.params.id};`)
     .then((results) => {
       res.send(results.data);
     })
     .catch((err) => res.status(500).send(err));
 });
-
 // GET one user_name
 
 //http://localhost:5002/users/users/1
 router.get("/users/:id", function (req, res, next) {
-  db(`SELECT * FROM users WHERE id=${req.params.UserID};`)
+  db(`SELECT * FROM users WHERE id=${req.params.id};`)
     .then((results) => {
       res.send(results.data);
     })

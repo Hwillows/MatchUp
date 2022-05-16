@@ -41,6 +41,20 @@ img {
   margin: 25px;
 }
 
+select {
+  border-radius: 6px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  margin: 10px;
+}
+
 /* COLORS 
 
 #4abdac
