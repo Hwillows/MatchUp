@@ -4,10 +4,9 @@ import React, { useState } from "react";
 //Data must be passed into this component so it knows how to render the user data
 
 const InputForm = (props) => {
-  const [selectUser1, setSelectUser1] = useState("");
-  const [selectUser2, setSelectUser2] = useState("");
-  const [selectTask, setSelectTask] = useState("");
-  // const [isMatch, setIsMatched] = useState("");
+  const [selectUser1, setSelectUser1] = useState([]);
+  const [selectUser2, setSelectUser2] = useState([]);
+  const [selectTask, setSelectTask] = useState([]);
 
   //Check variables and info being passed
   console.log("selectUser1", selectUser1);
@@ -16,6 +15,7 @@ const InputForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     console.log("Submit clicked!");
   };
 

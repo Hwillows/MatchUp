@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import InputForm from "./components/InputForm";
 
 export default function App() {
-  // const [matches, setMatches] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [users, setUsers] = useState([]);
 
@@ -36,8 +35,29 @@ export default function App() {
 
   return (
     <div className="App">
+      <img src="logo.png" />
+      <div className="d-flex justify-content-end">
+        <button
+          type="button"
+          className="btn btn-primary"
+          // onClick={() => handleChangeView(true)}
+        >
+          ADMIN
+        </button>
+        <button
+          type="button"
+          className="btn btn-secondary"
+          // onClick={() => handleChangeView(false)}
+        >
+          USER
+        </button>
+        {/* onClick is react event handler */}
+
+        {/* change view */}
+      </div>
       <div className="app-container">
         <h1>Find Your Match</h1>
+
         <h4>some things are a better in pairs</h4>
         <hr></hr>
         <h5>
