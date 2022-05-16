@@ -39,14 +39,14 @@ export default function App() {
       <div className="d-flex justify-content-end">
         <button
           type="button"
-          className="btn btn-primary"
+          className="btn btn-warning"
           // onClick={() => handleChangeView(true)}
         >
           ADMIN
         </button>
         <button
           type="button"
-          className="btn btn-secondary"
+          className="btn btn-warning"
           // onClick={() => handleChangeView(false)}
         >
           USER

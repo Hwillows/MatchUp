@@ -8,7 +8,7 @@
 }
 
 body {
-  background-color: #4abdac;
+  background-color: #4abdacc1;
 }
 h1 {
   margin: 25px;
@@ -55,6 +55,10 @@ button {
   margin: 10px;
 }
 
+image {
+  display: flex;
+  flex-direction: justify-content-end;
+}
 /* COLORS 
 
 #4abdac

@@ -4,19 +4,40 @@ import React, { useState } from "react";
 //Data must be passed into this component so it knows how to render the user data
 
 const InputForm = (props) => {
-  const [selectUser1, setSelectUser1] = useState([]);
-  const [selectUser2, setSelectUser2] = useState([]);
+  // const [selectUser1, setSelectUser1] = useState([]);
+  // const [selectUser2, setSelectUser2] = useState([]);
+  const [users, setUsers] = useState({});
   const [selectTask, setSelectTask] = useState([]);
+  const [message, setMessage] = useState("");
+  const [isActive, setIsActive] = useState(true);
 
-  //Check variables and info being passed
-  console.log("selectUser1", selectUser1);
-  console.log("selectUser2", selectUser2);
-  console.log("selectTask", selectTask);
+  // //Check variables and info being passed
+  // console.log("selectUser1", selectUser1);
+  // console.log("selectUser2", selectUser2);
+  // console.log("selectTask", selectTask);
+
+  const changeIsActive = () => {
+    if (users.selectUser1 === users.selectUser2) {
+      setMessage("Choose two different people");
+      setIsActive(false);
+    } else {
+      setIsActive(true);
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     console.log("Submit clicked!");
+  };
+
+  const handleChange = (event) => {
+    setUsers({
+      ...users,
+      [event.target.name]: event.target.value,
+    });
+
+    changeIsActive();
   };
 
   return (
@@ -28,9 +49,9 @@ const InputForm = (props) => {
           className="user1-dropdown"
           name="selectUser1" //targeting the variable from the state
           //   any time we select anything from the dropdown, it's going to target the name to the initial state selectVal
-          value={selectUser1} //value is selecting the variable --activating the variable
+          value={users.selectUser1} //value is selecting the variable --activating the variable
           as="select" //equivalent to "type" for input
-          onChange={(e) => setSelectUser1(e.target.value)} //instead of creating separate function, we are creating an anon function on the jsx
+          onChange={handleChange} //instead of creating separate function, we are creating an anon function on the jsx
         >
           {/* use .map b/c tasks is an array of objects  */}
           {props.users.map((user) => (
@@ -43,19 +64,13 @@ const InputForm = (props) => {
           className="user2-dropdown"
           name="selectUser2" //targeting the name of it
           //   any time we select anything from the dropdown, it's going to target the name to the initial state selectVal
-          value={selectUser2} //value is selecting the variable --activating the variable
+          value={users.selectUser2} //value is selecting the variable --activating the variable
           as="select" //equivalent to "type" for input
-          onChange={(e) => setSelectUser2(e.target.value)} //instead of creating separate function, we are creating an anon function on the jsx
+          onChange={handleChange} //instead of creating separate function, we are creating an anon function on the jsx
         >
           {/* use .map b/c tasks is an array of objects  */}
           {props.users.map((user) => (
-            <option
-              key={user.id}
-              //trying to disable already selected user
-              // disabled={selectUser1.id === selectUser2.id ? "disabled" : ""}
-            >
-              {user.user_name}
-            </option>
+            <option key={user.id}>{user.user_name}</option>
           ))}
         </select>
         {/*----------TASK----------*/}
@@ -73,13 +88,18 @@ const InputForm = (props) => {
             <option key={task.id}>{task.task_name}</option>
           ))}
         </select>
-        <button
-          type="submit"
-          className="btn btn-warning btn-lg btn-block"
-          onClick={(e) => handleSubmit(e)}
-        >
-          Match Up!
-        </button>
+        <div id="message">{message}</div>
+        <div>
+          {/* hide button with if statement -check portfolio */}
+          <button
+            type="submit"
+            className="btn btn-warning btn-lg btn-block"
+            onClick={(e) => handleSubmit(e)}
+            disabled={!isActive}
+          >
+            Match Up!
+          </button>
+        </div>
       </div>
     </div>
   );
