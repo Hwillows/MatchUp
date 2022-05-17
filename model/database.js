@@ -23,7 +23,7 @@ con.connect(function (err) {
     "DROP TABLE if exists Tasks; DROP TABLE if exists Users; CREATE TABLE Tasks(TaskID INT NOT NULL AUTO_INCREMENT, TaskName VARCHAR(40) not null, IsMatched BOOLEAN, PRIMARY KEY (TaskID));CREATE TABLE Users(UserID INT NOT NULL AUTO_INCREMENT, UserName VARCHAR(40) not null, PRIMARY KEY (UserID));";
   con.query(sql, function (err, result) {
     if (err) throw err;
-    console.log("Table creation `items` was successful!");
+    console.log("Table creation `users, tasks` was successful!");
 
     console.log("Closing...");
   });
