@@ -11,6 +11,7 @@ export default function App() {
   useEffect(() => {
     getTasks();
     getUsers();
+    getMatches();
   }, []);
 
   const handleAddMatches = (newMatch) => {
@@ -35,6 +36,17 @@ export default function App() {
       .then((response) => response.json())
       .then((users) => {
         setUsers(users);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const getMatches = () => {
+    fetch("/tasks/showTasks")
+      .then((response) => response.json())
+      .then((matches) => {
+        setMatches(matches);
       })
       .catch((error) => {
         console.log(error);
@@ -82,7 +94,7 @@ export default function App() {
           addNewMatch={(addNewMatch) => handleAddMatches(addNewMatch)}
         />
         {/* MatchesTable addNewMatch={addNewMatch} /> */}
-        <MatchesTable />
+        <MatchesTable matches={matches} />
       </div>
     </div>
   );
