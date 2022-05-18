@@ -2,10 +2,11 @@ import React from "react";
 
 export default function MatchesTable({ newMatch }) {
   return (
-    //Table displays the two users and activity that were matched in inputForm.js
+    //Table displays the two users and activity that were/ matched in inputForm.js
     <div>
+      <div className="table-header">ALL MATCHES</div>
       <div className="table-container">
-        <table class="table">
+        <table className="table">
           <thead>
             <tr className="table-light">
               <th scope="col">Activity</th>
@@ -16,7 +17,7 @@ export default function MatchesTable({ newMatch }) {
           {newMatch.map((match) => (
             <tbody>
               <tr>
-                <th className="table-light" scope="row">
+                <th className="table-light" scope="row" key="match.task_id">
                   {match.task_id}
                 </th>
                 <td className="table-light">{match.user_name}</td>
@@ -27,14 +28,5 @@ export default function MatchesTable({ newMatch }) {
         </table>
       </div>
     </div>
-
-    // <ul>
-    //   {matches.map((match) => (
-    //     <li>
-    //       {match.user_name}
-    //       {match.task_id}
-    //     </li>
-    //   ))}
-    // </ul>
   );
 }

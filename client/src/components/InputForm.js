@@ -4,8 +4,6 @@ import React, { useState } from "react";
 //Data must be passed into this component so it knows how to render the user data
 
 const InputForm = (props) => {
-  // const [selectUser1, setSelectUser1] = useState([]);
-  // const [selectUser2, setSelectUser2] = useState([]);
   const [users, setUsers] = useState({});
   const [tasks, setTasks] = useState({});
   const [selectTask, setSelectTask] = useState([]);

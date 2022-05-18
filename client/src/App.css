@@ -60,6 +60,12 @@ button {
   align-items: center;
 }
 
+.table-header {
+  font-size: 25px;
+  font-weight: bold;
+  background-color: #fc4a1a;
+}
+
 /* COLORS 
 
 #4abdac
