@@ -5,7 +5,7 @@ export default function MatchesTable({ matches }) {
     <div>
       <table class="table">
         <thead>
-          <tr>
+          <tr className="table-light">
             <th scope="col">Activity</th>
             <th scope="col">Name #1</th>
             <th scope="col">Name #2</th>
@@ -14,9 +14,11 @@ export default function MatchesTable({ matches }) {
         {matches.map((match) => (
           <tbody>
             <tr>
-              <th scope="row">{match.task_id}</th>
-              <td>{match.user_name}</td>
-              <td></td>
+              <th className="table-light" scope="row">
+                {match.task_id}
+              </th>
+              <td className="table-light">{match.user_name}</td>
+              <td className="table-light">{match.user_name}</td>
             </tr>
           </tbody>
         ))}
