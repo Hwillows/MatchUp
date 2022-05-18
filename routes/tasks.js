@@ -15,7 +15,8 @@ router.get("/", function (req, res, next) {
 A temporary table is created that shows matches when the task_id in the users table equals the id of the tasks table. */
 router.get("/showTasks", function (req, res, next) {
   db(
-    `SELECT users.user_name, users.task_id FROM users INNER JOIN tasks ON users.task_id = tasks.id;`
+    // `SELECT users.user_name, users.task_id FROM users INNER JOIN tasks ON users.task_id = tasks.id;`
+    `SELECT users.user_name, task_name FROM users INNER JOIN tasks ON users.task_id = tasks.id;`
   )
     .then((results) => {
       res.send(results.data);

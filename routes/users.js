@@ -47,7 +47,7 @@ router.get("/showTasks", function (req, res, next) {
 router.put("/updateMatch", (req, res) => {
   console.log(req.body);
   // const task_id = req.body.task_id; //variable names need to match front end
-  const task_id = req.body.task_id;
+  const task_id = req.body.task_name;
   const user_id = req.body.user_id; //may need to add 2nd uder_id for a second user
   const user_id2 = req.body.user_id2;
   db(

@@ -18,7 +18,7 @@ export default function MatchesTable({ newMatch }) {
             <tbody>
               <tr>
                 <th className="table-light" scope="row" key="match.task_id">
-                  {match.task_id}
+                  {match.task_name}
                 </th>
                 <td className="table-light">{match.user_name}</td>
                 <td className="table-light">{match.user_name}</td>
