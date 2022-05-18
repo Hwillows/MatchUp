@@ -4,8 +4,6 @@ import React, { useState } from "react";
 //Data must be passed into this component so it knows how to render the user data
 
 const InputForm = (props) => {
-  // const [selectUser1, setSelectUser1] = useState([]);
-  // const [selectUser2, setSelectUser2] = useState([]);
   const [users, setUsers] = useState({});
   const [tasks, setTasks] = useState({});
   const [selectTask, setSelectTask] = useState([]);
@@ -37,15 +35,13 @@ const InputForm = (props) => {
       [event.target.name]: event.target.value,
     });
     changeIsActive(); //checking if names are different
-
-    props.addNewMatch(users);
   };
 
   return (
     <div>
       <form className="form-container">
         {/*----------SELECT USER 1----------*/}
-        <label for="selectUser1">Choose Name 1:</label>
+        <label for="selectUser1">Select Your Name:</label>
         <select
           className="user1-dropdown"
           name="selectUser1" //targeting the variable from the state
@@ -60,7 +56,7 @@ const InputForm = (props) => {
           ))}
         </select>
         {/*----------SELECTUSER 2----------*/}
-        <label for="selectUser2">Choose Name 2:</label>
+        <label for="selectUser2">Choose Your Partner:</label>
         <select
           className="user2-dropdown"
           name="selectUser2" //targeting the name of it
@@ -75,7 +71,7 @@ const InputForm = (props) => {
           ))}
         </select>
         {/*----------TASK----------*/}
-        <label for="selectTask">Choose an Activity:</label>
+        <label for="selectTask">Choose An Activity:</label>
         <select
           className="task-dropdown"
           name="selectTask" //targeting the name of it

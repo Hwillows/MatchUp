@@ -12,6 +12,7 @@ export default function App() {
     getTasks();
     getUsers();
     getMatches();
+    // getTaskNameByID();
   }, []);
 
   const handleAddMatches = (newMatch) => {
@@ -52,6 +53,18 @@ export default function App() {
         console.log(error);
       });
   };
+  // NEW CODE
+  const getTaskNameByID = () => {
+    fetch("users/tasks/:id")
+      .then((response) => response.json())
+      .then((matches) => {
+        setMatches(matches);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  //
 
   return (
     <div className="App">
@@ -93,7 +106,7 @@ export default function App() {
           tasks={tasks}
           addNewMatch={(addNewMatch) => handleAddMatches(addNewMatch)}
         />
-        {/* MatchesTable addNewMatch={addNewMatch} /> */}
+        {/* <MatchesTable addNewMatch={addNewMatch} /> */}
         <MatchesTable matches={matches} />
       </div>
     </div>
