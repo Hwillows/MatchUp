@@ -11,15 +11,6 @@ router.get("/", function (req, res, next) {
     .catch((err) => res.status(500).send(err));
 });
 
-//  GET ENTIRE TASKS LIST FROM tasks TABLE in matchup DB
-router.get("/tasks", function (req, res, next) {
-  db("SELECT * FROM tasks;")
-    .then((results) => {
-      res.send(results.data);
-    })
-    .catch((err) => res.status(500).send(err));
-});
-
 // GET ONE TASK
 //localhost:5002/users/tasks/1
 router.get("/tasks/:id", function (req, res, next) {
@@ -44,7 +35,8 @@ router.get("/:id", function (req, res, next) {
 //GET matched names and their matched task
 router.get("/showTasks", function (req, res, next) {
   db(
-    `SELECT users.user_name, users.task_id FROM users INNER JOIN tasks ON users.task_id = tasks.id;`
+    // `SELECT users.user_name, users.task_id FROM users INNER JOIN tasks ON users.task_id = tasks.id;`
+    `SELECT users.*, tasks.task_name FROM users JOIN tasks ON users.task_id = tasks.id;`
   )
     .then((results) => {
       res.send(results.data);
@@ -52,12 +44,18 @@ router.get("/showTasks", function (req, res, next) {
     .catch((err) => res.status(500).send(err));
 });
 
-router.put("/", (req, res) => {
-  const task_id = req.body.task_id; //variable names need to match front end
+router.put("/updateMatch", (req, res) => {
+  console.log(req.body);
+  // const task_id = req.body.task_id; //variable names need to match front end
+  const task_id = req.body.task_id;
   const user_id = req.body.user_id; //may need to add 2nd uder_id for a second user
-  db(`UPDATE users SET task_id = ${task_id}  WHERE id = ${user_id};`).then(
+  const user_id2 = req.body.user_id2;
+  db(
+    `UPDATE users SET task_id = ${task_id}  WHERE id = ${user_id} OR id = ${user_id2};`
+  ).then(
+    // db(`UPDATE users SET task_id = ${task_name}  WHERE id = ${user_id};`).then(
     () => {
-      db("SELECT * FROM users ORDER BY id ASC;")
+      db("SELECT * FROM users WHERE task_id IS NOT NULL ORDER BY id ASC;")
         .then((results) => {
           res.send(results.data);
         })

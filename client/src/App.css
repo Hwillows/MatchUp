@@ -55,6 +55,11 @@ button {
   margin: 10px;
 }
 
+.table-container {
+  display: flex;
+  align-items: center;
+}
+
 /* COLORS 
 
 #4abdac
