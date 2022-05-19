@@ -66,6 +66,11 @@ button {
   background-color: #fc4a1a;
 }
 
+.thead {
+  font-size: larger;
+  font-weight: 500;
+}
+
 /* COLORS 
 
 #4abdac

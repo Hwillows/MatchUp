@@ -6,12 +6,12 @@ import React, { useState } from "react";
 const InputForm = (props) => {
   const [users, setUsers] = useState({});
   const [tasks, setTasks] = useState({});
-  const [selectTask, setSelectTask] = useState([]);
+  // const [selectTask, setSelectTask] = useState({});
   const [message, setMessage] = useState("");
   const [isActive, setIsActive] = useState(true);
 
   const changeIsActive = () => {
-    if (users.selectUser1 === users.selectUser2) {
+    if (users.user_id === users.user_id2) {
       setMessage("Please choose two different names.");
       setIsActive(false);
     } else {
@@ -35,6 +35,7 @@ const InputForm = (props) => {
       ...tasks,
       [event.target.name]: event.target.value,
     });
+
     changeIsActive(); //checking if names are different
   };
 
@@ -83,9 +84,10 @@ const InputForm = (props) => {
           className="task-dropdown"
           name="task_id" //targeting the name of it
           //   any time we select anything from the dropdown, it's going to target the name to the initial state selectVal
-          value={selectTask} //value is selecting the variable --activating the variable
+          value={tasks.selectTask} //value is selecting the variable --activating the variable
           as="select" //equivalent to "type" for input
           onChange={handleChange} //instead of creating separate function, we are creating an anon function on the jsx
+          // onChange={(e) => setSelectTask(e.target.value)}
         >
           {props.tasks.map((task) => (
             /* 'tasks' is an array of objects is being passed from App.js.
@@ -108,7 +110,7 @@ const InputForm = (props) => {
             // className="{isActive ? btn btn-warning btn-lg btn-block : noShow}"
             className="isActive ? btn btn-warning btn-lg btn-block"
             onClick={(e) => handleSubmit(e)}
-            // disabled={!isActive}
+            disabled={!isActive}
           >
             Match Up!
           </button>

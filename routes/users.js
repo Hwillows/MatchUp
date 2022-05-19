@@ -47,21 +47,18 @@ router.get("/showTasks", function (req, res, next) {
 router.put("/updateMatch", (req, res) => {
   console.log(req.body);
   // const task_id = req.body.task_id; //variable names need to match front end
-  const task_id = req.body.task_name;
+  const task_id = req.body.task_id;
   const user_id = req.body.user_id; //may need to add 2nd uder_id for a second user
   const user_id2 = req.body.user_id2;
   db(
     `UPDATE users SET task_id = ${task_id}  WHERE id = ${user_id} OR id = ${user_id2};`
-  ).then(
-    // db(`UPDATE users SET task_id = ${task_name}  WHERE id = ${user_id};`).then(
-    () => {
-      db("SELECT * FROM users WHERE task_id IS NOT NULL ORDER BY id ASC;")
-        .then((results) => {
-          res.send(results.data);
-        })
-        .catch((err) => res.status(500).send(err));
-    }
-  );
+  ).then(() => {
+    db("SELECT * FROM users WHERE task_id IS NOT NULL ORDER BY id ASC;")
+      .then((results) => {
+        res.send(results.data);
+      })
+      .catch((err) => res.status(500).send(err));
+  });
 });
 
 module.exports = router;

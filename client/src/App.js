@@ -29,7 +29,7 @@ export default function App() {
 
     fetch("/users/updateMatch", {
       method: "PUT",
-      headers: { "Content-Type": "application/json; charset=utf-8" },
+
       body: JSON.stringify(match),
     })
       .then((response) => response.json())

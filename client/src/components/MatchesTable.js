@@ -7,7 +7,7 @@ export default function MatchesTable({ newMatch }) {
       <div className="table-header">ALL MATCHES</div>
       <div className="table-container">
         <table className="table">
-          <thead>
+          <thead className="thead">
             <tr className="table-light">
               <th scope="col">Activity</th>
               <th scope="col">Name #1</th>
