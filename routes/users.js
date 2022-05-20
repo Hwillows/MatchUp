@@ -20,7 +20,7 @@ router.put("/updateMatch", (req, res) => {
   db(
     `UPDATE users SET task_id = ${task_id}  WHERE id = ${user_id} OR id = ${user_id2};`
   ).then(() => {
-    db(`SELECT group_concat(users.user_name separator ',') as users, 
+    db(`SELECT group_concat(users.user_name separator ' and ') as users, 
         tasks.task_name 
         FROM users
         INNER JOIN tasks ON tasks.id = users.task_id
