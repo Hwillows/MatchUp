@@ -6,6 +6,19 @@ MatchUP is a social platform focused on paired activities and tasks. It was desi
 ![](database-schema-matchup.png)
 
 ## About
+## *Features*
+
+## Setup
+## *Dependencies*
+## *Database Prep*
+## *Development*
+
+## Technologies
+
+## Possible Future Features
+
+
+
 
 
 
