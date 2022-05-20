@@ -1,6 +1,6 @@
 // App.js is front-end Parent Component
 
-/*------------------------SET STATE------------------------*/
+/*------------------------IMPORT------------------------*/
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import InputForm from "./components/InputForm"; //import InputForm componenet
@@ -16,16 +16,28 @@ export default function App() {
 
   useEffect(() => {
     //useEffect runs every time page refreshes
-    getTasks(); //gets ALL tasks from database and
-    getUsers();
-    getMatches();
-    // getTaskNameByID();
+    getTasks(); //gets ALL tasks from database and sets them in the tasks state variable
+    getUsers(); //gets ALL users from database and sets them in the tasks state variable
+    getMatches(); //returns objects with two names and the task they're matched to.
   }, []);
-  /*************??????????????????????????????????**************/
-  const handleAddMatches = (match) => {
-    console.log("App component receiving new match from Admin", match);
-    console.log(match);
-    // setNewMatch((state) => [...state, newMatch]); //saves previous state and adds new matches
+  /*------------------------handleAddMatches-----------------------*/
+
+  /*------------------------FUNCTIONS-----------------------*/
+  const handleAddNewMatch = (match) => {
+    console.log("match from handleAddMatches", match);
+    //'match' is an object that holds user_id, user_id2, and task_id --- EXAMPLE: {user_id: '10', user_id2: '12', task_id: '6' }
+
+    //setNewMatch saves all previous matches and adds the new match. Updating the state.
+    setNewMatch((previousMatches) => [...previousMatches, newMatch]);
+    console.log("newMatch", newMatch);
+    /*newMatch returns an array of objects. Each object holds matched names (after submit) and the task they are matched to. 
+    
+    EXAMPLE:
+    group_concat(users.user_name separator ','): "Deb,Joseph"
+    task_name: "Explore Barcelona";
+    */
+
+    //
 
     fetch("/users/updateMatch", {
       method: "PUT",
@@ -34,6 +46,7 @@ export default function App() {
     })
       .then((response) => response.json())
       .then((tasks) => {
+        console.log(tasks);
         setNewMatch(tasks); //add all tasks to the setTasks state so they can render in the dropdown
       })
       .catch((error) => {
@@ -41,11 +54,10 @@ export default function App() {
       });
   };
 
-  /*************??????????????????????????????????**************/
-
   /*------------------------INFORMATION COMING FROM DB WHICH IS SET IN BACKENED (users.js, tasks.js)-----------------------*/
+  /*GET all 'tasks' from tasks table from db() declared in tasks.js. This list is being set in the 'tasks' variable
+  in the state as an array so that it can be mapped through in the dropdown menu in the InputForm. */
   const getTasks = () => {
-    //GET all 'tasks' from tasks table from db() declared in tasks.js
     fetch("/tasks")
       .then((response) => response.json())
       .then((tasks) => {
@@ -83,24 +95,7 @@ export default function App() {
     /*------------------------JSX/HTML-----------------------*/
 
     <div className="App">
-      <img src="logo.png" />
-      <div className="d-flex justify-content-end">
-        {/* <button
-          type="button"
-          className="btn btn-warning"
-          // onClick={() => handleChangeView(true)}
-        >
-          ADMIN
-        </button>
-        <button
-          type="button"
-          className="btn btn-warning"
-          // onClick={() => handleChangeView(false)}
-        >
-          USER
-        </button>
-        {/* onClick is react event handler */}
-      </div>
+      <img src="logo.png" alt="matchUp logo" />
       <div className="app-container">
         <h1>Find Your Match</h1>
         <h4>some things are a better in pairs</h4>
@@ -119,7 +114,7 @@ export default function App() {
           users={users}
           tasks={tasks}
           /*************??????????????????????????????????**************/
-          addNewMatch={(addNewMatch) => handleAddMatches(addNewMatch)}
+          addNewMatch={(addNewMatch) => handleAddNewMatch(addNewMatch)}
           /*************??????????????????????????????????**************/
         />
         {/* <MatchesTable addNewMatch={addNewMatch} /> */}

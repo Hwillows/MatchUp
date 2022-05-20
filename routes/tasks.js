@@ -11,17 +11,27 @@ router.get("/", function (req, res, next) {
     .catch((err) => res.status(500).send(err));
 });
 
-/*Selecting columns 'user_name' and 'task_id' from 'users' table and joining it with 'tasks' table.
-A temporary table is created that shows matches when the task_id in the users table equals the id of the tasks table. */
-router.get("/showTasks", function (req, res, next) {
-  db(
-    // `SELECT users.user_name, users.task_id FROM users INNER JOIN tasks ON users.task_id = tasks.id;`
-    `SELECT users.user_name, task_name FROM users INNER JOIN tasks ON users.task_id = tasks.id;`
-  )
-    .then((results) => {
-      res.send(results.data);
-    })
-    .catch((err) => res.status(500).send(err));
-});
+// This temporary table shows the names and the tasks they're matched to.
+router.get(
+  "/showTasks",
+  function (req, res, next) {
+    db(
+      // `SELECT users.user_name, tasks.task_name FROM users INNER JOIN tasks ON users.task_id = tasks.id;`
+      `SELECT group_concat(users.user_name separator ','), 
+      tasks.task_name FROM users INNER JOIN tasks ON tasks.id = users.task_id GROUP BY task_name;`
+    )
+      .then((results) => {
+        res.send(results.data);
+      })
+      .catch((err) => res.status(500).send(err));
+  }
+  /* RESULTS LOOK LIKE 
+ * {
+        "group_concat(users.user_name separator ',')": "Deb,Joseph",
+        "task_name": "Explore Barcelona"
+    }
+    
+*/
+);
 
 module.exports = router;

@@ -6,8 +6,7 @@ import React, { useState } from "react";
 const InputForm = (props) => {
   const [users, setUsers] = useState({});
   const [tasks, setTasks] = useState({});
-  // const [selectTask, setSelectTask] = useState({});
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState(""); //message for choosing 2 names
   const [isActive, setIsActive] = useState(true);
 
   const changeIsActive = () => {
@@ -20,9 +19,13 @@ const InputForm = (props) => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
     console.log("Submit clicked!");
+    console.log(e.target);
+    e.preventDefault();
     props.addNewMatch(users);
+
+    console.log(users);
+    console.log(tasks);
   };
 
   const handleChange = (event) => {
@@ -36,14 +39,22 @@ const InputForm = (props) => {
       [event.target.name]: event.target.value,
     });
 
+    //THIS FORMAT COULD BE USED TO SET USERS AND TASKS IN ONE OBJECT
+    // let { name, value } = event.target;
+    // setFormData((state) => ({
+    //   ...state,
+    //   [name]: value,
+    // }));
+
     changeIsActive(); //checking if names are different
   };
 
   return (
     <div>
-      <form className="form-container">
+      <form className="form-container" onSubmit={(e) => handleSubmit(e)}>
         {/*----------SELECT USER 1----------*/}
-        <label for="selectUser1">Select Your Name:</label>
+        <label>Select Your Name:</label>
+        {/* <label for="selectUser1">Select Your Name:</label> */}
         <select
           className="user1-dropdown"
           name="user_id" //targeting the variable from the state
@@ -62,7 +73,9 @@ const InputForm = (props) => {
           ))}
         </select>
         {/*----------SELECT USER 2----------*/}
-        <label for="selectUser2">Choose Your Partner:</label>
+        <label>Choose Your Partner:</label>
+        {/* <label for="selectUser2">Choose Your Partner:</label> */}
+
         <select
           className="user2-dropdown"
           name="user_id2" //targeting the name of it
@@ -79,7 +92,9 @@ const InputForm = (props) => {
           ))}
         </select>
         {/*----------TASK----------*/}
-        <label for="selectTask">Choose An Activity:</label>
+        <label>Choose An Activity:</label>
+        {/* <label for="selectTask">Choose An Activity:</label> */}
+
         <select
           className="task-dropdown"
           name="task_id" //targeting the name of it
@@ -103,14 +118,11 @@ const InputForm = (props) => {
         </select>
         <div id="message">{message}</div>
         <div>
-          {/* hide button with if statement -check portfolio */}
           <button
             type="submit"
-            // trying to conditionally render submit button ---not working
-            // className="{isActive ? btn btn-warning btn-lg btn-block : noShow}"
             className="isActive ? btn btn-warning btn-lg btn-block"
-            onClick={(e) => handleSubmit(e)}
-            disabled={!isActive}
+
+            // disabled={!isActive}
           >
             Match Up!
           </button>
