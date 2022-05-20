@@ -29,8 +29,8 @@ export default function App() {
     //'match' is an object that holds user_id, user_id2, and task_id --- EXAMPLE: {user_id: '10', user_id2: '12', task_id: '6' }
 
     //setNewMatch saves all previous matches and adds the new match. Updating the state.
-    setNewMatch((previousMatches) => [...previousMatches, newMatch]);
-    console.log("newMatch", newMatch);
+    // setNewMatch((previousMatches) => [...previousMatches, match]);
+    // console.log("newMatch", newMatch);
     /*newMatch returns an array of objects. Each object holds matched names (after submit) and the task they are matched to. 
     
     EXAMPLE:
@@ -43,7 +43,9 @@ export default function App() {
     /*------------------------ERROR WITH /updateMatch WHEN INFO SUBMITTED -----------------------*/
     fetch("/users/updateMatch", {
       method: "PUT",
-
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(match),
     })
       .then((response) => response.json())

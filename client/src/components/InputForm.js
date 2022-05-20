@@ -4,45 +4,30 @@ import React, { useState } from "react";
 //Data must be passed into this component so it knows how to render the user data
 
 const InputForm = ({ addNewMatch, users, tasks }) => {
-  // const [users, setUsers] = useState({});
-  // const [tasks, setTasks] = useState({});
-  // const [message, setMessage] = useState(""); //message for choosing 2 names
-  // const [isActive, setIsActive] = useState(true);
-  const [formData, setFormData] = useState({
-    task_id: null,
-    user_id: null,
-    user_id2: null,
-  });
+  const [formData, setFormData] = useState({});
 
-  // const changeIsActive = () => {
-  //   if (users.user_id === users.user_id2) {
-  //     setMessage("Please choose two different names.");
-  //     setIsActive(false);
-  //   } else {
-  //     setIsActive(true);
-  //   }
-  // };
+  const [message, setMessage] = useState(""); //message for choosing 2 names
+  const [isActive, setIsActive] = useState(true);
 
   const handleSubmit = (e) => {
     console.log("Submit clicked!", "e.target", e.target);
     console.log(e.target); // targets form
     e.preventDefault();
+    addNewMatch(formData);
 
-    addNewMatch(users);
-    console.log(users);
-    console.log(tasks);
+    console.log("formData", formData);
+    console.log("users", users);
+    console.log("tasks", tasks);
   };
 
-  // const handleChange = (event) => {
-  // setUsers({
-  //   ...users,
-  //   [event.target.name]: event.target.value,
-  // });
-
-  // setTasks({
-  //   ...tasks,
-  //   [event.target.name]: event.target.value,
-  // });
+  const changeIsActive = () => {
+    if (formData.user_id === formData.user_id2) {
+      setMessage("Please choose two different names.");
+      setIsActive(false);
+    } else {
+      setIsActive(true);
+    }
+  };
 
   // THIS FORMAT COULD BE USED TO SET USERS AND TASKS IN ONE OBJECT
   const handleChange = (event) => {
@@ -52,7 +37,7 @@ const InputForm = ({ addNewMatch, users, tasks }) => {
       [name]: value,
     }));
 
-    // changeIsActive(); //checking if names are different
+    changeIsActive(); //checking if names are different
   };
 
   return (
@@ -65,7 +50,7 @@ const InputForm = ({ addNewMatch, users, tasks }) => {
           className="user1-dropdown"
           name="user_id" //targeting the variable from the state
           //   any time we select anything from the dropdown, it's going to target the name to the initial state selectVal
-          value={users.selectUser1} //value is selecting the variable --activating the variable
+          value={formData.user_id} //value is selecting the variable --activating the variable
           as="select" //equivalent to "type" for input
           onChange={handleChange} //instead of creating separate function, we are creating an anon function on the jsx
         >
@@ -86,7 +71,7 @@ const InputForm = ({ addNewMatch, users, tasks }) => {
           className="user2-dropdown"
           name="user_id2" //targeting the name of it
           //   any time we select anything from the dropdown, it's going to target the name to the initial state selectVal
-          value={users.selectUser2} //value is selecting the variable --activating the variable
+          value={formData.user_id2} //value is selecting the variable --activating the variable
           as="select" //equivalent to "type" for input
           onChange={handleChange} //instead of creating separate function, we are creating an anon function on the jsx
         >
@@ -105,7 +90,7 @@ const InputForm = ({ addNewMatch, users, tasks }) => {
           className="task-dropdown"
           name="task_id" //targeting the name of it
           //   any time we select anything from the dropdown, it's going to target the name to the initial state selectVal
-          value={tasks.selectTask} //value is selecting the variable --activating the variable
+          value={formData.task_id} //value is selecting the variable --activating the variable
           as="select" //equivalent to "type" for input
           onChange={handleChange} //instead of creating separate function, we are creating an anon function on the jsx
           // onChange={(e) => setSelectTask(e.target.value)}
@@ -122,12 +107,12 @@ const InputForm = ({ addNewMatch, users, tasks }) => {
             in the state in App.js. '(task)' is referring to each individual task in the 'tasks' array*/
           ))}
         </select>
-        {/* <div id="message">{message}</div> */}
+        <div id="message">{message}</div>
         <div>
           <button
             type="submit"
             className="isActive ? btn btn-warning btn-lg btn-block"
-            // disabled={!isActive}
+            disabled={!isActive}
           >
             Match Up!
           </button>
