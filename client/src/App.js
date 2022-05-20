@@ -11,6 +11,7 @@ export default function App() {
   const [tasks, setTasks] = useState([]); //ALL tasks
   const [users, setUsers] = useState([]); //ALL users
   const [newMatch, setNewMatch] = useState([]); // new match created when form is submitted
+  //I DON'T THINK SETNEWMATCH IS RUNNING CORRECTLY. NEW MATCHES AREN'T BEING ADDED TO THE TABLE.
 
   /*------------------------FUNCTIONS-----------------------*/
 
@@ -37,8 +38,9 @@ export default function App() {
     task_name: "Explore Barcelona";
     */
 
-    //
+    /*------------------------INFORMATION COMING FROM DB WHICH IS SET IN BACKENED (users.js, tasks.js)-----------------------*/
 
+    /*------------------------ERROR WITH /updateMatch WHEN INFO SUBMITTED -----------------------*/
     fetch("/users/updateMatch", {
       method: "PUT",
 
@@ -46,15 +48,13 @@ export default function App() {
     })
       .then((response) => response.json())
       .then((tasks) => {
-        console.log(tasks);
-        setNewMatch(tasks); //add all tasks to the setTasks state so they can render in the dropdown
+        setNewMatch(tasks); //NOT WORKING?
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  /*------------------------INFORMATION COMING FROM DB WHICH IS SET IN BACKENED (users.js, tasks.js)-----------------------*/
   /*GET all 'tasks' from tasks table from db() declared in tasks.js. This list is being set in the 'tasks' variable
   in the state as an array so that it can be mapped through in the dropdown menu in the InputForm. */
   const getTasks = () => {

@@ -3,50 +3,61 @@ import React, { useState } from "react";
 //Sending input information as props from App.js.
 //Data must be passed into this component so it knows how to render the user data
 
-const InputForm = (props) => {
-  const [users, setUsers] = useState({});
-  const [tasks, setTasks] = useState({});
-  const [message, setMessage] = useState(""); //message for choosing 2 names
-  const [isActive, setIsActive] = useState(true);
+const InputForm = ({ addNewMatch, users, tasks }) => {
+  // const [users, setUsers] = useState({});
+  // const [tasks, setTasks] = useState({});
+  // const [message, setMessage] = useState(""); //message for choosing 2 names
+  // const [isActive, setIsActive] = useState(true);
 
-  const changeIsActive = () => {
-    if (users.user_id === users.user_id2) {
-      setMessage("Please choose two different names.");
-      setIsActive(false);
-    } else {
-      setIsActive(true);
-    }
-  };
+  const [formData, setFormData] = useState({
+    tasks: { tasks },
+    users: { users },
+  });
+
+  console.log("formDataTasks", formData.tasks);
+  console.log("formDataUsers", formData.users);
+
+  // const changeIsActive = () => {
+  //   if (users.user_id === users.user_id2) {
+  //     setMessage("Please choose two different names.");
+  //     setIsActive(false);
+  //   } else {
+  //     setIsActive(true);
+  //   }
+  // };
 
   const handleSubmit = (e) => {
-    console.log("Submit clicked!");
-    console.log(e.target);
+    console.log("Submit clicked!", "e.target", e.target);
+    console.log(e.target); // targets form
     e.preventDefault();
-    props.addNewMatch(users);
+    addNewMatch(formData);
+    // addNewMatch(users);
 
-    console.log(users);
-    console.log(tasks);
+    console.log("formData", formData);
+    console.log("users", users);
+    console.log("tasks", tasks);
   };
 
+  // const handleChange = (event) => {
+  // setUsers({
+  //   ...users,
+  //   [event.target.name]: event.target.value,
+  // });
+
+  // setTasks({
+  //   ...tasks,
+  //   [event.target.name]: event.target.value,
+  // });
+
+  // THIS FORMAT COULD BE USED TO SET USERS AND TASKS IN ONE OBJECT
   const handleChange = (event) => {
-    setUsers({
-      ...users,
-      [event.target.name]: event.target.value,
-    });
+    let { name, value } = event.target;
+    setFormData((state) => ({
+      ...state,
+      [name]: value,
+    }));
 
-    setTasks({
-      ...tasks,
-      [event.target.name]: event.target.value,
-    });
-
-    //THIS FORMAT COULD BE USED TO SET USERS AND TASKS IN ONE OBJECT
-    // let { name, value } = event.target;
-    // setFormData((state) => ({
-    //   ...state,
-    //   [name]: value,
-    // }));
-
-    changeIsActive(); //checking if names are different
+    // changeIsActive(); //checking if names are different
   };
 
   return (
@@ -66,7 +77,7 @@ const InputForm = (props) => {
           {/* 'users' array is being passed from App.js as an array.
            This variable was set in the state in the getUsers function which gets the entire
            list of users from the database */}
-          {props.users.map((user) => (
+          {users.map((user) => (
             <option key={user.id} value={user.id}>
               {user.user_name}
             </option>
@@ -84,7 +95,7 @@ const InputForm = (props) => {
           as="select" //equivalent to "type" for input
           onChange={handleChange} //instead of creating separate function, we are creating an anon function on the jsx
         >
-          {props.users.map((user) => (
+          {users.map((user) => (
             // props is working the same way as it does in "Select User 1"
             <option key={user.id} value={user.id}>
               {user.user_name}
@@ -104,7 +115,7 @@ const InputForm = (props) => {
           onChange={handleChange} //instead of creating separate function, we are creating an anon function on the jsx
           // onChange={(e) => setSelectTask(e.target.value)}
         >
-          {props.tasks.map((task) => (
+          {tasks.map((task) => (
             /* 'tasks' is an array of objects is being passed from App.js.
            This variable was set in the state in the getTasks function which gets the entire
            list of tasks from the database */
@@ -116,12 +127,11 @@ const InputForm = (props) => {
             in the state in App.js. '(task)' is referring to each individual task in the 'tasks' array*/
           ))}
         </select>
-        <div id="message">{message}</div>
+        {/* <div id="message">{message}</div> */}
         <div>
           <button
             type="submit"
             className="isActive ? btn btn-warning btn-lg btn-block"
-
             // disabled={!isActive}
           >
             Match Up!

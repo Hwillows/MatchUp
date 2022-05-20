@@ -14,8 +14,8 @@ export default function MatchesTable({ newMatch }) {
             </tr>
           </thead>
           <tbody>
-            {/* NEEDS TO BE FIXED -- table showing task but not users */}
-            {newMatch.map((match, index) => (
+            {/*ERROR- NEEDS TO BE FIXED -- table showing task but not users */}
+            {newMatch.map((match) => (
               <tr key="index">
                 <th className="table-light" scope="row">
                   {match.task_name}

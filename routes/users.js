@@ -10,7 +10,17 @@ router.get("/", function (req, res, next) {
     })
     .catch((err) => res.status(500).send(err));
 });
+/**
+ EXAMPLE: 
+  {
+        
+"task_id": 1,
+"user_id": 12,
+"user_id2": 14
 
+}
+
+ */
 router.put("/updateMatch", (req, res) => {
   // const task_id = req.body.task_id; //variable names need to match front end
   const task_id = req.body.task_id;
