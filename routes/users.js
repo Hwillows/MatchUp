@@ -26,10 +26,16 @@ router.put("/updateMatch", (req, res) => {
   const task_id = req.body.task_id;
   const user_id = req.body.user_id;
   const user_id2 = req.body.user_id2;
+  console.log(req.body)
   db(
     `UPDATE users SET task_id = ${task_id}  WHERE id = ${user_id} OR id = ${user_id2};`
   ).then(() => {
-    db("SELECT * FROM users WHERE task_id IS NOT NULL ORDER BY id ASC;")
+    db(`SELECT group_concat(users.user_name separator ',') as users, 
+        tasks.task_name 
+        FROM users
+        INNER JOIN tasks ON tasks.id = users.task_id
+        WHERE users.task_id is not null
+        GROUP BY task_name;`)
       .then((results) => {
         res.send(results.data);
       })

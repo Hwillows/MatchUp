@@ -20,8 +20,8 @@ export default function MatchesTable({ newMatch }) {
                 <th className="table-light" scope="row">
                   {match.task_name}
                 </th>
-                <td className="table-light">{match.user_name}</td>
-                <td className="table-light">{match.user_name}</td>
+                <td className="table-light">{match.users}</td>
+                {/* <td className="table-light">{match.user_name}</td> */}
               </tr>
             ))}
 

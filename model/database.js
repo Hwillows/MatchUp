@@ -20,7 +20,10 @@ con.connect(function (err) {
   console.log("Connected!");
 
   let sql =
-    "DROP TABLE if exists tasks; DROP TABLE if exists users; CREATE TABLE Tasks(id INT NOT NULL AUTO_INCREMENT, task_name VARCHAR(40) not null, PRIMARY KEY (id));CREATE TABLE users(id INT NOT NULL AUTO_INCREMENT, user_name VARCHAR(40) not null, PRIMARY KEY (id));";
+    `DROP TABLE if exists tasks; 
+    DROP TABLE if exists users;
+    CREATE TABLE Tasks(id INT NOT NULL AUTO_INCREMENT, task_name VARCHAR(40) not null, PRIMARY KEY (id));
+    CREATE TABLE users(id INT NOT NULL AUTO_INCREMENT, user_name VARCHAR(40) not null, task_id INT NOT NULL, PRIMARY KEY (id));`;
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Table creation `users, tasks` was successful!");
