@@ -17,7 +17,7 @@ router.get(
   function (req, res, next) {
     db(
       // `SELECT users.user_name, tasks.task_name FROM users INNER JOIN tasks ON users.task_id = tasks.id;`
-      `SELECT group_concat(users.user_name separator ',') as users, 
+      `SELECT group_concat(users.user_name separator ' and ') as users, 
       tasks.task_name FROM users INNER JOIN tasks ON tasks.id = users.task_id WHERE users.task_id is not null GROUP BY task_name;`
     )
       .then((results) => {
