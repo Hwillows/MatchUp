@@ -8,14 +8,11 @@ const InputForm = ({ addNewMatch, users, tasks }) => {
   // const [tasks, setTasks] = useState({});
   // const [message, setMessage] = useState(""); //message for choosing 2 names
   // const [isActive, setIsActive] = useState(true);
-
   const [formData, setFormData] = useState({
-    tasks: { tasks },
-    users: { users },
+    task_id: null,
+    user_id: null,
+    user_id2: null,
   });
-
-  console.log("formDataTasks", formData.tasks);
-  console.log("formDataUsers", formData.users);
 
   // const changeIsActive = () => {
   //   if (users.user_id === users.user_id2) {
@@ -30,12 +27,10 @@ const InputForm = ({ addNewMatch, users, tasks }) => {
     console.log("Submit clicked!", "e.target", e.target);
     console.log(e.target); // targets form
     e.preventDefault();
-    addNewMatch(formData);
-    // addNewMatch(users);
 
-    console.log("formData", formData);
-    console.log("users", users);
-    console.log("tasks", tasks);
+    addNewMatch(users);
+    console.log(users);
+    console.log(tasks);
   };
 
   // const handleChange = (event) => {
