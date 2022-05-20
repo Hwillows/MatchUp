@@ -22,7 +22,7 @@ const InputForm = ({ addNewMatch, users, tasks }) => {
 
   const changeIsActive = () => {
     if (formData.user_id === formData.user_id2) {
-      setMessage("Please choose two different names.");
+      setMessage("Choose two different names!");
       setIsActive(false);
     } else {
       setIsActive(true);
@@ -44,7 +44,6 @@ const InputForm = ({ addNewMatch, users, tasks }) => {
     <div>
       <form className="form-container" onSubmit={(e) => handleSubmit(e)}>
         {/*----------SELECT USER 1----------*/}
-        <label>Select Your Name:</label>
         {/* <label for="selectUser1">Select Your Name:</label> */}
         <select
           className="user1-dropdown"
@@ -54,6 +53,7 @@ const InputForm = ({ addNewMatch, users, tasks }) => {
           as="select" //equivalent to "type" for input
           onChange={handleChange} //instead of creating separate function, we are creating an anon function on the jsx
         >
+          <option selected>-Choose Your Name-</option>
           {/* 'users' array is being passed from App.js as an array.
            This variable was set in the state in the getUsers function which gets the entire
            list of users from the database */}
@@ -64,7 +64,7 @@ const InputForm = ({ addNewMatch, users, tasks }) => {
           ))}
         </select>
         {/*----------SELECT USER 2----------*/}
-        <label>Choose Your Partner:</label>
+
         {/* <label for="selectUser2">Choose Your Partner:</label> */}
 
         <select
@@ -75,6 +75,7 @@ const InputForm = ({ addNewMatch, users, tasks }) => {
           as="select" //equivalent to "type" for input
           onChange={handleChange} //instead of creating separate function, we are creating an anon function on the jsx
         >
+          <option selected>-Choose Your Partner-</option>
           {users.map((user) => (
             // props is working the same way as it does in "Select User 1"
             <option key={user.id} value={user.id}>
@@ -83,8 +84,6 @@ const InputForm = ({ addNewMatch, users, tasks }) => {
           ))}
         </select>
         {/*----------TASK----------*/}
-        <label>Choose An Activity:</label>
-        {/* <label for="selectTask">Choose An Activity:</label> */}
 
         <select
           className="task-dropdown"
@@ -95,6 +94,7 @@ const InputForm = ({ addNewMatch, users, tasks }) => {
           onChange={handleChange} //instead of creating separate function, we are creating an anon function on the jsx
           // onChange={(e) => setSelectTask(e.target.value)}
         >
+          <option selected>-Choose An Activity-</option>
           {tasks.map((task) => (
             /* 'tasks' is an array of objects is being passed from App.js.
            This variable was set in the state in the getTasks function which gets the entire

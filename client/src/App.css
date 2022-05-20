@@ -11,7 +11,7 @@ body {
   background-color: #4abdacc1;
 }
 h1 {
-  margin: 25px;
+  margin-top: 25px;
   display: flex;
   justify-content: center;
   font-weight: bolder;
@@ -20,7 +20,6 @@ h1 {
 }
 
 h4 {
-  margin: 25px;
   display: flex;
   justify-content: center;
   font-weight: bolder;
@@ -31,6 +30,7 @@ h4 {
 h5 {
   margin: 25px;
   display: flex;
+  text-align: center;
   justify-content: center;
   font-weight: bolder;
   color: #fff;
@@ -50,9 +50,16 @@ select {
   flex-direction: column;
   align-items: center;
 }
+.description-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+  margin: 0px auto;
+}
 
 button {
-  margin: 10px;
+  margin: 15px;
 }
 
 .table-container {
@@ -68,6 +75,35 @@ button {
 
 .thead {
   font-size: larger;
+}
+
+.user1-dropdown {
+  margin: 10px;
+  font-size: larger;
+  text-align: center;
+}
+
+.user2-dropdown {
+  margin: 10px;
+  font-size: larger;
+  text-align: center;
+}
+
+.task-dropdown {
+  margin: 10px;
+  font-size: larger;
+  text-align: center;
+}
+
+.table-light {
+  font-size: larger;
+}
+
+#message {
+  font-size: large;
+  font-weight: bolder;
+  color: black;
+  font-style: oblique;
 }
 
 /* COLORS 

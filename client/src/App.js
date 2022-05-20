@@ -102,24 +102,24 @@ export default function App() {
         <h1>Find Your Match</h1>
         <h4>some things are a better in pairs</h4>
         <hr></hr>
-        <h5>
-          Looking for a gym partner, shopping buddy, or even a chess opponent?
-          <br />
-          <br />
-          MatchUP is a platform where you can find and match with people who
-          have similar interests and likeminded goals.
-        </h5>
+        <div className="description-container">
+          <h5>
+            Looking for a gym partner, shopping buddy, or even a chess opponent?
+            <br />
+            <br />
+            MatchUP is a platform where you can find and match with people who
+            have similar interests and likeminded goals.
+          </h5>
+        </div>
+
         <hr></hr>
-        <h4>Choose an activity</h4>
+        <h4>Create A New Match:</h4>
         {/*------------------------PROPS-----------------------*/}
         <InputForm
           users={users}
           tasks={tasks}
-          /*************??????????????????????????????????**************/
           addNewMatch={(addNewMatch) => handleAddNewMatch(addNewMatch)}
-          /*************??????????????????????????????????**************/
         />
-        {/* <MatchesTable addNewMatch={addNewMatch} /> */}
         <MatchesTable newMatch={newMatch} tasks={tasks} />
       </div>
     </div>
