@@ -59,7 +59,7 @@ MatchUP is a social platform focused on paired activities and tasks. It was desi
 ![](database-schema-matchup.png)
 
 ## API Routes Design
-![](api-routes-design.png)
+![]( api-routes-design.png)
 
 ### Development
 
