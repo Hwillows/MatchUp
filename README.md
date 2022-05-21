@@ -8,9 +8,35 @@ MatchUP is a social platform focused on paired activities and tasks. It was desi
 
 
 ## *Features*
+- Ability to fetch user names from a MYSQL database
+- Ability to fetch tasks from a MYSQL database
+- Displays database information in 3 different dropdown menus
+- Ability to choose two names and a task with the dropdown menus. 
+- 'MatchUP' submit button disables if two different names are not chosen. 
+- Ability to display all submitted matches in a table. 
+
+
+## *Technologies*
+
+- Frontend
+  - React JS
+  - React-Bootstrap
+  - CSS
+  - React Router for Frontend routes
+  - Canva.com for mock-up logo
+ 
+
+- Backend
+  - MYSQL DB
+  - Express JS
+  - Node JS
+
 
 ## Setup
-## *Dependencies*
+- Run npm install in project directory. This will install server-related dependencies such as express.
+
+cd client and run npm install. This will install client dependencies (React).
+
 ## *Database Prep*
 ## *Development*
 
@@ -18,6 +44,10 @@ MatchUP is a social platform focused on paired activities and tasks. It was desi
 
 ## Possible Future Features
 
+- In the future, this app could feature a login page that keeps track of users in order to create a larger and more dynamic database. 
+- This app could also feature a page that allows users to create new activities to add to the database. 
+- Users could have the option to 'delete' or 'edit' matches that have been submitted.
+- Matches could also display more privately in the user's profile instead of the main page. 
 
 
 
