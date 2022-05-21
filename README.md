@@ -3,7 +3,6 @@
 ## About
 MatchUP is a social platform focused on paired activities and tasks. It was designed for users seeking to find and match with people who have similar interests and likeminded goals. Sometimes, things can't be done alone, so MatchUP helps users who need or want to find a partner to accomplish a task or do an particular activity, but aren't necessarily looking for a friendship or a longterm commitment. 
 
-![](database-schema-matchup.png)
 ![]()
 
 
@@ -31,16 +30,38 @@ MatchUP is a social platform focused on paired activities and tasks. It was desi
   - Express JS
   - Node JS
 
-
 ## Setup
-- Run npm install in project directory. This will install server-related dependencies such as express.
 
-cd client and run npm install. This will install client dependencies (React).
+### Dependencies
 
-## *Database Prep*
-## *Development*
+- Backend
+  - Run `npm install` in project directory (root folder). This will install server-related dependencies such as `express`.
+- Frontend 
+  -`cd client` and run `npm install`. This will install client dependencies (React).
 
-## Technologies
+### Database Prep
+
+- Access the MySQL interface in your terminal by running `mysql -u root -p`
+- Create a new database called matchup: `create database matchup`
+- Add a `.env` file to the project folder of this repository containing the MySQL authentication information for MySQL user. For example:
+
+```bash
+  DB_HOST=localhost
+  DB_USER=root
+  DB_NAME=matchup
+  DB_PASS=YOURPASSWORD
+```
+- Run `npm run migrate` in the project folder of this repository, in a new terminal window. This will create a two tables called 'users' and 'tasks' in your database.
+
+
+## MySQL Database Schema
+![](database-schema-matchup.png)
+
+### Development
+
+- Run `npm start` in project directory to start the Express server on port 5002
+- In another terminal, do `cd client` and run `npm start` to start the client in development mode with hot reloading in port 3000.
+
 
 ## Possible Future Features
 
@@ -50,8 +71,6 @@ cd client and run npm install. This will install client dependencies (React).
 - Matches could also display more privately in the user's profile instead of the main page. 
 
 
+## Notes
 
-
-
-
-<em>This is a student project that was created at CodeOp, a full stack development bootcamp in Barcelona.</em>
+_This is a student project that was created at [CodeOp](http://CodeOp.tech), a full stack development bootcamp in Barcelona._
