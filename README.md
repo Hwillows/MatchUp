@@ -14,6 +14,7 @@ MatchUP is a social platform focused on paired activities and tasks. It was desi
 - Displays database information in 3 different dropdown menus
 - Ability to choose two names and a task with the dropdown menus.
 - 'MatchUP' submit button disables if two different names are not chosen.
+- Matched tasks are filtered out of the dropdown and cannot be duplicated.
 - Ability to display all submitted matches in a table.
 
 ## _Technologies_
