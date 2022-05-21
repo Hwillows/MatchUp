@@ -1,11 +1,11 @@
-<<<<<<< HEAD
+
 # MatchUP
 
 ## About
 
 MatchUP is a social platform focused on paired activities and tasks. It was designed for users seeking to find and match with people who have similar interests and likeminded goals. Sometimes, things can't be done alone, so MatchUP helps users who need or want to find a partner to accomplish a task or do an particular activity, but aren't necessarily looking for a friendship or a longterm commitment.
 
-![]()
+
 
 ## _Features_
 
@@ -57,6 +57,9 @@ MatchUP is a social platform focused on paired activities and tasks. It was desi
 ## MySQL Database Schema
 
 ![](database-schema-matchup.png)
+
+## API Routes Design
+![]( api-routes-design.png)
 
 ### Development
 
