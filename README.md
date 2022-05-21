@@ -56,10 +56,10 @@ MatchUP is a social platform focused on paired activities and tasks. It was desi
 
 ## MySQL Database Schema
 
-![](database-schema-matchup.png)
+![database-schema](database-schema-matchup.png)
 
 ## API Routes Design
-![]( api-routes-design.png)
+![api-routes-design](matchup-api-routes-design.png)
 
 ### Development
 
