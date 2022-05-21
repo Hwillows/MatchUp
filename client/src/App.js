@@ -119,6 +119,7 @@ export default function App() {
           users={users}
           tasks={tasks}
           addNewMatch={(addNewMatch) => handleAddNewMatch(addNewMatch)}
+          newMatch={newMatch}
         />
         <MatchesTable newMatch={newMatch} tasks={tasks} />
       </div>

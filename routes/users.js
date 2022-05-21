@@ -25,7 +25,7 @@ router.put("/updateMatch", (req, res) => {
         FROM users
         INNER JOIN tasks ON tasks.id = users.task_id
         WHERE users.task_id is not null
-        GROUP BY task_name;`)
+       GROUP BY task_name;`)
       .then((results) => {
         res.send(results.data);
       })

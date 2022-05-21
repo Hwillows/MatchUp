@@ -3,7 +3,7 @@ import React, { useState } from "react";
 //Sending input information as props from App.js.
 //Data must be passed into this component so it knows how to render the user data
 
-const InputForm = ({ addNewMatch, users, tasks }) => {
+const InputForm = ({ addNewMatch, users, tasks, newMatch }) => {
   const [formData, setFormData] = useState({});
 
   const [message, setMessage] = useState(""); //message for choosing 2 names
@@ -95,17 +95,26 @@ const InputForm = ({ addNewMatch, users, tasks }) => {
           // onChange={(e) => setSelectTask(e.target.value)}
         >
           <option selected>-Choose An Activity-</option>
-          {tasks.map((task) => (
-            /* 'tasks' is an array of objects is being passed from App.js.
+          {tasks
+            .filter((task) => {
+              for (let match of newMatch) {
+                if (task.task_name === match.task_name) {
+                  return false;
+                }
+              }
+              return task;
+            })
+            .map((task) => (
+              /* 'tasks' is an array of objects is being passed from App.js.
            This variable was set in the state in the getTasks function which gets the entire
            list of tasks from the database */
-            <option key={task.id} value={task.id}>
-              {task.task_name}
-            </option>
-            /* We are mapping through the array. 'tasks' is an array of objects. '.id' refers to the task's unique ID 
+              <option key={task.id} value={task.id}>
+                {task.task_name}
+              </option>
+              /* We are mapping through the array. 'tasks' is an array of objects. '.id' refers to the task's unique ID 
             and ".task_name" is referring to the task_name in the DB. Again, this info has been set as a 'tasks' variable 
             in the state in App.js. '(task)' is referring to each individual task in the 'tasks' array*/
-          ))}
+            ))}
         </select>
         <div id="message">{message}</div>
         <div>
