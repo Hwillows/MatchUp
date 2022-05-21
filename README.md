@@ -37,7 +37,8 @@ MatchUP is a social platform focused on paired activities and tasks. It was desi
 
 - Backend
   - Run `npm install` in project directory (root folder). This will install server-related dependencies such as `express`.
-- Frontend -`cd client` and run `npm install`. This will install client dependencies (React).
+- Frontend 
+  -`cd client` and run `npm install`. This will install client dependencies (React).
 
 ### Database Prep
 
