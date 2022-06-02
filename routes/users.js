@@ -33,4 +33,20 @@ router.put("/updateMatch", (req, res) => {
   });
 });
 
+router.post("/", function (req, res, next) {
+  console.log(req.body, "is the body");
+  db(
+    `INSERT INTO users (user_name, email, task) VALUES ("${req.body.user_name}", "${req.body.email}", "${req.body.task}");`
+  )
+    .then((results) => res.send(results.data))
+    .catch((err) => res.status(500).send(err.message));
+});
+
+router.delete("/:user_name", function (req, res) {
+  console.log(req.params, "is the params");
+  db(`DELETE FROM users WHERE user_name=${req.params.user_name};`)
+    .then((results) => res.send(results))
+    .catch((err) => res.status(500).send(err));
+});
+
 module.exports = router;

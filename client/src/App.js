@@ -121,7 +121,7 @@ export default function App() {
           addNewMatch={(addNewMatch) => handleAddNewMatch(addNewMatch)}
           newMatch={newMatch}
         />
-        <MatchesTable newMatch={newMatch} tasks={tasks} />
+        {/* <MatchesTable newMatch={newMatch} tasks={tasks} /> */}
       </div>
     </div>
   );
