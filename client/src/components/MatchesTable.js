@@ -1,24 +1,45 @@
 import React, { useState, useEffect } from "react";
-var nodemailer = require("nodemailer");
-require("dotenv").config();
+import emailjs from "emailjs-com";
 
-// I am passing variables from the form page to get the current user - this works
-// I need to fix the email password thing
+// I am passing variables from the form page to get the current user
 export default function MatchesTable({
   currentName,
   currentTask,
   currentEmail,
 }) {
-  const [userInfo, setUserInfo] = useState([{}]); // all users in the database
-  const [userEmail, setUserEmail] = useState(""); // the email of the person when the button is clicked
+  const [userInfo, setUserInfo] = useState([]); // all users in the database
+  const [existingUserEmail, setExistingUserEmail] = useState(""); // the email of the person when the button is clicked
+  const [currentUserName, setCurrentUserName] = useState("");
+  const [currentUserTask, setCurrentUserTask] = useState("");
+  const [existingUserName, setExistingUserName] = useState("");
+  const [currentUserEmail, setCurrentUserEmail] = useState("");
 
-  const handleSetUserEmail = (event) => {
-    console.log(userEmail);
-    console.log(
-      `${userInfo} is the user in the list ${process.env.EMAILPASS} `
-    );
-    console.log(`${process.env.DB_NAME} is the password`);
-    setUserEmail(event);
+  const handleSendEmail = (e) => {
+    // e.preventDefault();
+    setExistingUserEmail(e.email);
+    setCurrentUserName(currentName);
+    setCurrentUserTask(currentTask);
+    setExistingUserName(currentName);
+    setCurrentUserEmail(currentEmail);
+
+    let userInfoObject = {
+      userEmail: existingUserEmail,
+      userName: existingUserName,
+      currentName: currentUserName,
+      currentTask: currentUserTask,
+      currentEmail: currentUserEmail,
+    };
+
+    emailjs
+      .send("gmail", "template_sm1s4gs", userInfoObject, "fgWR9WYWIE_nYqIDn")
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
   };
 
   useEffect(() => {
@@ -31,39 +52,14 @@ export default function MatchesTable({
     fetchData();
   }, []);
 
-  var transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: "testemailhannah@gmail.com",
-      pass: "CodeOpSchool22", // need to fix this
-    },
-  });
+  // information displayed matches the same activity as the person who just submitted
 
-  var mailOptions = {
-    from: "testemailhannah@gmail.com",
-    to: { userEmail },
-    subject: `MatchUp connection request for ${currentTask}`,
-    text: `${currentName} is requesting you get in touch with them via ${currentEmail} to participate in ${currentTask} together`,
-  };
-
-  transporter.sendMail(mailOptions, function(error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("Email sent: " + info.response);
-    }
-  });
-
-  // I want display user information that matches the same activity as the person who just submitted
-  // i need to pass the tasks variable from inputform.js
-  // i need to then only map the ones from this
   return (
-    //Table displays the two users and activity that were matched in inputForm.js
     <div>
       <div className="table-header">ALL MATCHES</div>
       <div className="table-container">
         <table className="table">
-          <div className="table-header"></div>
+          {/* <div className="table-header"></div> */}
           <thead>
             <tr className="table-light">
               <th scope="col">ACTIVITY</th>
@@ -80,20 +76,15 @@ export default function MatchesTable({
                   </th>
                   <td className="table-light">{oneUser.user_name}</td>
                   <td className="table-light">
-                    <button onClick={() => handleSetUserEmail(oneUser.email)}>
+                    <button onClick={() => handleSendEmail(oneUser)}>
                       Send Email
                     </button>
                   </td>
                 </tr>
               ) : (
-                <div></div>
+                <tr></tr>
               )
             )}
-
-            {/* // <tr>
-              //   <th className="table-light" scope="row"></th>
-              //   <td className="table-light"></td>
-              // </tr> */}
           </tbody>
         </table>
       </div>

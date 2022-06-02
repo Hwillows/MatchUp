@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import MatchesTable from "./MatchesTable";
 
-//Sending input information as props from App.js.
-//Data must be passed into this component so it knows how to render the user data
-// const InputForm = ({ addNewMatch, users, tasks, newMatch }) => {
 const InputForm = () => {
-  const [formData, setFormData] = useState({});
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [task, setTask] = useState("");
+  const [currentUser, setCurrentUser] = useState("");
   const [newUser, setNewUser] = useState(false);
 
   const handleNamesChange = (event) => {
@@ -23,29 +20,18 @@ const InputForm = () => {
     setTask(event.target.value);
   };
 
-  // const [message, setMessage] = useState(""); //message for choosing 2 names
-  // const [isActive, setIsActive] = useState(true);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setNewUser(true);
-    let newUser = { user_name: name, email: email, task: task };
+    setCurrentUser({ user_name: name, email: email, task: task });
+    console.log(currentUser);
     fetch("/users", {
       method: "POST",
       headers: { "Content-Type": "application/json; charset=utf-8" },
-      body: JSON.stringify(newUser),
+      body: JSON.stringify(currentUser),
     }).then(() => {
       console.log("New user added");
     });
-  };
-
-  // THIS FORMAT COULD BE USED TO SET USERS AND TASKS IN ONE OBJECT
-  const handleChange = (event) => {
-    let { name, value } = event.target;
-    setFormData((state) => ({
-      ...state,
-      [name]: value,
-    }));
   };
 
   return (
@@ -68,10 +54,8 @@ const InputForm = () => {
           name="task_id" //targeting the name of it
           //   any time we select anything from the dropdown, it's going to target the name to the initial state selectVal
           onChange={handleTasksChange}
-          value={task} //value is selecting the variable --activating the variable
+          value={task}
           as="select" //equivalent to "type" for input
-          // onChange={handleChange} //instead of creating separate function, we are creating an anon function on the jsx
-          // onChange={(e) => setSelectTask(e.target.value)}
         >
           <option selected>-Choose An Activity-</option>
           <option value="Chess">Chess</option>
@@ -82,12 +66,7 @@ const InputForm = () => {
           <option value="Tennis">Tennis</option>
         </select>
         <div>
-          <button
-            type="submit"
-            className="btn btn-warning btn-lg btn-block"
-            // className="isActive ? btn btn-warning btn-lg btn-block"
-            // disabled={!isActive}
-          >
+          <button type="submit" className="btn btn-warning btn-lg btn-block">
             Match Up!
           </button>
         </div>
@@ -97,6 +76,7 @@ const InputForm = () => {
           currentName={name}
           currentTask={task}
           currentEmail={email}
+          currentUser={currentUser}
         />
       ) : (
         <div></div>

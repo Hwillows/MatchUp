@@ -42,11 +42,31 @@ router.post("/", function (req, res, next) {
     .catch((err) => res.status(500).send(err.message));
 });
 
-router.delete("/:user_name", function (req, res) {
-  console.log(req.params, "is the params");
-  db(`DELETE FROM users WHERE user_name=${req.params.user_name};`)
-    .then((results) => res.send(results))
-    .catch((err) => res.status(500).send(err));
+// router.delete("/:id", function (req, res) {
+//   console.log(req.params, "is the params");
+//   db(`DELETE FROM users WHERE id=${req.params.id};`);
+//   db(`SELECT * from users;`)
+//     .then((results) => res.send(results))
+//     .catch((err) => res.status(500).send(err));
+// });
+
+router.delete("/:id", async (req, res) => {
+  let id = req.params.id;
+  let sqlCheckID = `SELECT * FROM users WHERE id = ${id}`;
+  let sqlDelete = `DELETE FROM users WHERE id = ${id}`;
+  try {
+    let result = await db(sqlCheckID);
+    if (result.data.length === 0) {
+      res.status(404).send({ error: "User not found!" });
+    } else {
+      await db(sqlDelete);
+      let result = await db("select * from users");
+      let items = result.data;
+      res.status(201).send(items);
+    }
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
 });
 
 module.exports = router;
