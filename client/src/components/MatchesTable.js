@@ -9,18 +9,16 @@ export default function MatchesTable({
   currentTask,
   currentEmail,
 }) {
-  // these variables are what has been posted in to the
-  const [userInfo, setUserInfo] = useState([{}]);
-  const [userEmail, setUserEmail] = useState(""); // this gets the email of the button that is clicked
-
-  // console.log(
-  //   `the current user is ${currentName}, ${currentTask}, ${currentEmail}`
-  // );
+  const [userInfo, setUserInfo] = useState([{}]); // all users in the database
+  const [userEmail, setUserEmail] = useState(""); // the email of the person when the button is clicked
 
   const handleSetUserEmail = (event) => {
-    setUserEmail(event);
     console.log(userEmail);
-    console.log(`${userInfo} is the user in the list`);
+    console.log(
+      `${userInfo} is the user in the list ${process.env.EMAILPASS} `
+    );
+    console.log(`${process.env.DB_NAME} is the password`);
+    setUserEmail(event);
   };
 
   useEffect(() => {
@@ -37,7 +35,7 @@ export default function MatchesTable({
     service: "gmail",
     auth: {
       user: "testemailhannah@gmail.com",
-      pass: process.env.emailpass, // need to fix this
+      pass: "CodeOpSchool22", // need to fix this
     },
   });
 
