@@ -26,6 +26,8 @@ MatchUP is a social platform focused on paired activities and tasks. It was desi
   - CSS
   - React Router for Frontend routes
   - Canva.com for mock-up logo
+  - toastify
+  - emailJS
 
 - Backend
   - MYSQL DB
