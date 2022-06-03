@@ -7,8 +7,9 @@ export default function MatchesTable({
   currentTask,
   currentEmail,
 }) {
+  // current is the person who has just added their details. Existing is the person already on the database
   const [userInfo, setUserInfo] = useState([]); // all users in the database
-  const [existingUserEmail, setExistingUserEmail] = useState(""); // the email of the person when the button is clicked
+  const [existingUserEmail, setExistingUserEmail] = useState("");
   const [currentUserName, setCurrentUserName] = useState("");
   const [currentUserTask, setCurrentUserTask] = useState("");
   const [existingUserName, setExistingUserName] = useState("");
@@ -16,11 +17,26 @@ export default function MatchesTable({
 
   const handleSendEmail = (e) => {
     // e.preventDefault();
+    console.log(e);
     setExistingUserEmail(e.email);
+    console.log(existingUserEmail + "is exisitng email");
+    setExistingUserName(e.user_name);
     setCurrentUserName(currentName);
     setCurrentUserTask(currentTask);
-    setExistingUserName(currentName);
     setCurrentUserEmail(currentEmail);
+
+    console.log(
+      existingUserEmail +
+        " is existing email. " +
+        existingUserName +
+        " is existing user name. " +
+        currentUserName +
+        " is current user name. " +
+        currentUserTask +
+        " is current task. " +
+        currentUserEmail +
+        " is current email. "
+    );
 
     let userInfoObject = {
       userEmail: existingUserEmail,
