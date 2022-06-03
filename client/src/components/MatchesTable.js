@@ -1,53 +1,27 @@
 import React, { useState, useEffect } from "react";
 import emailjs from "emailjs-com";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-// I am passing variables from the form page to get the current user
 export default function MatchesTable({
-  currentName,
+  currentName, // I am passing variables from the form page to get the current user
   currentTask,
   currentEmail,
 }) {
   // current is the person who has just added their details. Existing is the person already on the database
   const [userInfo, setUserInfo] = useState([]); // all users in the database
-  const [existingUserEmail, setExistingUserEmail] = useState("");
-  const [currentUserName, setCurrentUserName] = useState("");
-  const [currentUserTask, setCurrentUserTask] = useState("");
-  const [existingUserName, setExistingUserName] = useState("");
-  const [currentUserEmail, setCurrentUserEmail] = useState("");
+  const [emailButtonClicked, setEmailButtonClicked] = useState(false);
 
-  const handleSendEmail = (e) => {
-    // e.preventDefault();
-    console.log(e);
-    setExistingUserEmail(e.email);
-    console.log(existingUserEmail + "is exisitng email");
-    setExistingUserName(e.user_name);
-    setCurrentUserName(currentName);
-    setCurrentUserTask(currentTask);
-    setCurrentUserEmail(currentEmail);
-
-    console.log(
-      existingUserEmail +
-        " is existing email. " +
-        existingUserName +
-        " is existing user name. " +
-        currentUserName +
-        " is current user name. " +
-        currentUserTask +
-        " is current task. " +
-        currentUserEmail +
-        " is current email. "
-    );
-
-    let userInfoObject = {
-      userEmail: existingUserEmail,
-      userName: existingUserName,
-      currentName: currentUserName,
-      currentTask: currentUserTask,
-      currentEmail: currentUserEmail,
-    };
+  const handleSendEmail = (user) => {
+    console.log(user);
+    let newObj = user;
+    newObj.currentUserName = currentName;
+    newObj.currentUserEmail = currentEmail;
+    console.log("next line is new obj");
+    console.log(newObj);
 
     emailjs
-      .send("gmail", "template_sm1s4gs", userInfoObject, "fgWR9WYWIE_nYqIDn")
+      .send("service_johhsxu", "template_sm1s4gs", newObj, "fgWR9WYWIE_nYqIDn")
       .then(
         (result) => {
           console.log(result.text);
@@ -56,6 +30,17 @@ export default function MatchesTable({
           console.log(error.text);
         }
       );
+
+    toast.success(`Email sent to ${user.user_name}`, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    setEmailButtonClicked(true);
   };
 
   useEffect(() => {
@@ -92,9 +77,30 @@ export default function MatchesTable({
                   </th>
                   <td className="table-light">{oneUser.user_name}</td>
                   <td className="table-light">
-                    <button onClick={() => handleSendEmail(oneUser)}>
-                      Send Email
-                    </button>
+                    <>
+                      <button
+                        onClick={() => handleSendEmail(oneUser)}
+                        value={oneUser.id}
+                        className={
+                          emailButtonClicked
+                            ? "btn btn-success"
+                            : "btn btn-secondary"
+                        }
+                      >
+                        Send Email
+                      </button>
+                      <ToastContainer
+                        position="top-center"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                      />
+                    </>
                   </td>
                 </tr>
               ) : (
